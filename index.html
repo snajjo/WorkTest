@@ -51,21 +51,20 @@
     position: relative;
     left: 37%;
     transform: translate(-50%, 0);
-	transition: 0.35s;
-	}
-	.button:hover {
-	background-color: black;
-	}
-	.img {
-    height: 75px;
-	text-align: center;
-    position: relative;
-    left: 19%;
-	margin-top: 60px;
-    transform: translate(-50%, 0);
-
-	}
-	</style>
+    transition: 0.35s;
+    }
+    .button:hover {
+    background-color: black;
+    }
+   .img {
+   height: 75px;
+   text-align: center;
+   position: relative;
+   left: 19%;
+   margin-top: 60px;
+   transform: translate(-50%, 0);
+   }
+</style>
 </head>
 <body>
 <div class="signup__form ">
@@ -91,15 +90,14 @@
 				</div>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
-					let tg = window.Telegram.WebApp;
-					let but = document.getElementById("button");
+let tg = window.Telegram.WebApp;
+let but = document.getElementById("button");
 
-					button.addEventListener("click", function() {
-							tg.MainButton.SetText("Спасибо что выбираете нас!");
-							tg.MainButton.show();
-							tg.sendData("sendTestMessage");
-					}
-				</script>
-
+button.addEventListener("click", function() {
+	tg.MainButton.SetText("Спасибо что выбираете нас!");
+	tg.MainButton.show();
+	tg.sendData("sendTestMessage");
+}
+</script>
 </body>
 </html>

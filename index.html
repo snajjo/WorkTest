@@ -81,6 +81,7 @@
 														<div class="modal__input-wrap">
 									<input id="ysl_and_doc" placeholder="Услуга или ФИО врача *" required="" name="form_text_516" class="modal__input" type="text" value="">
 								</div>
+	                <div id="error"></div>
 					<div style="text-align:center">
 						<button id="butt" class="button"> Записаться </button>
 						<div style="img">
@@ -90,14 +91,37 @@
 				</div>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
-let tg = window.Telegram.WebApp;
-let but = document.getElementById("butt");
+	let tg = window.Telegram.WebApp;
+	let but = document.getElementById("butt");
 
-butt.addEventListener("click", function() {
-tg.MainButton.SetText("Спасибо что выбираете нас!");
-tg.MainButton.show();
-tg.sendData("sendTestMessage");
-}
+	butt.addEventListener("click", () => {
+    document.getElementById("error").innerText = ''
+	let user_name1 = document.getElementById("user_name").value;
+	let user_phone1 = document.getElementById("user_phone").value;
+	let data_time1 = document.getElementById("data_time").value;
+	let ysl_and_doc1 = document.getElementById("ysl_and_doc").value;
+	if (user_name1.length < 1) {
+		document.getElementById("error").innerText = 'Ошибка в имени'
+		return;
+	}
+	if (user_phone1.length < 11) {
+		document.getElementById("error").innerText = 'Ошибка в номере телефона'
+		return;
+	}
+	if (data_time1.length < 1) {
+		document.getElementById("error").innerText = 'Ошибка в данных'
+		return;
+	}
+	let data = {
+	name: user_name1,
+	phone: user_phone1,
+	dtime: data_time1,
+	ysl_and_fio: ysl_and_doc1
+	}
+	tg.sendData(JSON.stringify(data));
+
+	tg.close();
+});
 </script>
 </body>
 </html>

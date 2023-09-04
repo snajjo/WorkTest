@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CallBack</title>
+	<style>
+    div {
+      margin: 0 auto;
+      width: 1000px
+      max-width: 90%;
+      min-width: 500px;
+
+	.modal__title {
+    font-size: 36px;
+    margin-bottom: 30px;
+    font-family: 'Gotham Pro';
+    color: #48b1b8;
+    font-weight: 600;
+    text-align: center;
+	}
+	.modal__input {
+    width: 100%;
+    height: 41px;
+    padding-left: 24px;
+    margin-bottom: 24px;
+    line-height: 41px;
+    background: #fff;
+	}
+	.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #66CCCC;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 50px;
+    padding: 0 25px;
+    border: none;
+    max-width: 240px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+	}
+	</style>
+</head>
+<body>
+<div class="signup__form ">
+					<div class="modal__title"> Записаться на приём	</div>
+														<div class="modal__input-wrap">
+									<input id="POPUP_NAME" placeholder="Ваше имя *" required="" name="form_text_512" class="modal__input" type="text" value="">
+								</div>
+														<div class="modal__input-wrap">
+									<input id="POPUP_PHONE" placeholder="+7 (___) ___-__-__ *" required="" name="form_text_513" class="modal__input phone" type="text" value="" maxlength="18">
+								</div>
+														<div class="modal__input-wrap">
+									<input id="POPUP_NEED_PRODUCT" placeholder="Желаемые дата и время " name="form_text_515" class="modal__input" type="text" value="">
+								</div>
+														<div class="modal__input-wrap">
+									<input id="POPUP_STAFF" placeholder="Услуга или ФИО врача *" required="" name="form_text_516" class="modal__input" type="text" value="">
+								</div>
+						<input id="POPUP_CITY_NAME" placeholder="Город" name="form_hidden_517" class="modal__input" type="hidden" value="WMT">
+					<input type="hidden" name="recaptcha_token" value="">
+					<div style="text-align:center">
+						<input type="submit" name="web_form_submit" class="button" value="Отправить">
+					</div>
+				</div>
+</body>
+</html>
+

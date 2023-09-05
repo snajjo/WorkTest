@@ -91,7 +91,7 @@
 									<input id="data_time" placeholder="Желаемые дата и время " name="form_text_515" class="modal__input" type="text" value="">
 								</div>
 														<div class="modal__input-wrap">
-									<input id="ysl_and_doc" placeholder="Услуга или ФИО врача *" required="" name="form_text_516" class="modal__input" type="text" value="">
+									<input id="ysl_and_doc" placeholder="Услуга или ФИО врача " required="" name="form_text_516" class="modal__input" type="text" value="">
 								</div>
 	                <div class="eror" id="error"></div>
 					<div style="text-align:center">
@@ -118,10 +118,6 @@
 	}
 	if (user_phone1.length < 11) {
 		document.getElementById("error").innerText = 'Ошибка в номере телефона'
-		return;
-	}
-	if (data_time1.length < 1) {
-		document.getElementById("error").innerText = 'Ошибка в данных'
 		return;
 	}
 	let data = {

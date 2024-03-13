@@ -104,19 +104,11 @@
 	let but = document.getElementById("butt");
 
 	butt.addEventListener("click", () => {
-    document.getElementById("error").innerText = ''
 	let user_name1 = document.getElementById("user_name").value;
 	let user_phone1 = document.getElementById("user_phone").value;
 	let data_time1 = document.getElementById("data_time").value;
 	let ysl_and_doc1 = document.getElementById("ysl_and_doc").value;
-	if (user_name1.length < 1) {
-		document.getElementById("error").innerText = 'Ошибка в имени'
-		return;
-	}
-	if (user_phone1.length < 11) {
-		document.getElementById("error").innerText = 'Ошибка в номере телефона'
-		return;
-	}
+	
 	let data = {
 	name: user_name1,
 	phone: user_phone1,

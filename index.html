@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SignUp</title>
+    <title>CallBack</title>
 <style>
     body {
     background-color: white;
@@ -80,21 +80,22 @@
 </head>
 <body>
 <div class="signup__form ">
-					<div class="modal__title"> Регистрация пользователя	</div>
+					<div class="modal__title"> Регистрация	</div>
 														<div class="modal__input-wrap">
 									<input id="user_name" placeholder="Фамилия Имя Отчество" required="" name="form_text_512" class="modal__input" type="text" value="">
 								</div>
 														<div class="modal__input-wrap">
-									<input id="user_filial" placeholder="Филиал" required="" name="form_text_513" class="modal__input phone" type="text" value="" maxlength="18">
+									<input id="user_phone" placeholder="Филиал" required="" name="form_text_513" class="modal__input phone" type="text" value="" maxlength="18">
 								</div>
 														<div class="modal__input-wrap">
-									<input id="user_dcode" placeholder="Идентификатор ИК" name="form_text_515" class="modal__input" type="text" value="">
+									<input id="data_time" placeholder="Идентификатор ИК" name="form_text_515" class="modal__input" type="text" value="">
 								</div>
 														<div class="modal__input-wrap">
-									<input id="user_tg" placeholder="Идентификатор ТГ" required="" name="form_text_516" class="modal__input" type="text" value="">
+									<input id="ysl_and_doc" placeholder="Идентификатор ТГ " required="" name="form_text_516" class="modal__input" type="text" value="">
 								</div>
+	                <div class="eror" id="error"></div>
 					<div style="text-align:center">
-						<button id="butt" class="button"> Записаться </button>
+						<button id="butt" class="button"> Подтвердить </button>
 					</div>
 				</div>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -105,15 +106,22 @@
 	butt.addEventListener("click", () => {
     document.getElementById("error").innerText = ''
 	let user_name1 = document.getElementById("user_name").value;
-	let user_filial1 = document.getElementById("user_filial").value;
-	let user_dcode1 = document.getElementById("user_dcode").value;
-	let user_tg1 = document.getElementById("user_tg").value;
-	
+	let user_phone1 = document.getElementById("user_phone").value;
+	let data_time1 = document.getElementById("data_time").value;
+	let ysl_and_doc1 = document.getElementById("ysl_and_doc").value;
+	if (user_name1.length < 1) {
+		document.getElementById("error").innerText = 'Ошибка в имени'
+		return;
+	}
+	if (user_phone1.length < 11) {
+		document.getElementById("error").innerText = 'Ошибка в номере телефона'
+		return;
+	}
 	let data = {
 	name: user_name1,
-	filial: user_filial1,
-	dcode: user_dcode1,
-	tgid: user_tg1
+	phone: user_phone1,
+	dtime: data_time1,
+	ysl_and_fio: ysl_and_doc1
 	}
 	tg.sendData(JSON.stringify(data));
 

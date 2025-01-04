@@ -25,12 +25,14 @@
         }
 
         .form-container {
+            position: relative;
+            padding-bottom: 80px; /* Оставляем место для кнопки */
+            width: 100%;
+            max-width: 400px;
             background-color: var(--white-color);
             padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
             border: 1px solid var(--red-color);
         }
 
@@ -69,15 +71,19 @@
         }
 
         .form-container button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
             padding: 0.75rem;
             background-color: var(--red-color);
             color: var(--white-color);
             border: none;
-            border-radius: 12px;
+            border-radius: 0;
             font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            z-index: 1000; /* Убедимся, что кнопка поверх клавиатуры */
         }
 
         .form-container button:hover {
@@ -131,7 +137,7 @@
             <div class="form-group">
                 <label for="priority">Приоритетность</label>
                 <select id="priority" name="priority" required>
-                    <option value ="" disabled selected>Выберите приоритет</option>
+                    <option value="" disabled selected >Выберите приоритет</option>
                     <option value="high">Высокий</option>
                     <option value="medium">Средний</option>
                     <option value="low">Низкий</option>
@@ -145,15 +151,18 @@
         </form>
     </div>
     <script>
-        const textarea = document.getElementById('message');
-        const button = document.querySelector('.form-container button');
+        document.addEventListener('DOMContentLoaded', function() {
+            const textarea = document.getElementById('message');
+            const formContainer = document.querySelector('.form-container');
 
-        textarea.addEventListener('focus', () => {
-            button.style.marginBottom = '300px'; // Увеличиваем отступ, чтобы кнопка не перекрывалась
-        });
+            textarea.addEventListener('focus', function() {
+                formContainer.style.paddingBottom = '200px'; // Увеличиваем отступ снизу
+                this.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            });
 
-        textarea.addEventListener('blur', () => {
-            button.style.marginBottom = '0'; // Возвращаем отступ в исходное состояние
+            textarea.addEventListener('blur', function() {
+                formContainer.style.paddingBottom = '80px'; // Возвращаем отступ
+            });
         });
     </script>
 </body>

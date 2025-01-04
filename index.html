@@ -1,125 +1,25 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CallBack</title>
-<style>
-    body {
-    background-color: white;
-    }
-    div {
-    margin: auto;
-    width: 480px;
-    max-width: 90%;
-    min-width: 500px;
-    }
-    .modal__title {
-    font-size: 35px;
-    margin-bottom: 30px;
-    font-family: 'Gotham Pro';
-    color: #48b1b8;
-    font-weight: 600;
-    text-align: center;
-    position: relative;
-    left: 37%;
-    transform: translate(-50%, 0);
-    }
-    .modal__input {
-    width: 350px;
-    height: 40px;
-    padding-left: 15px;
-    margin-bottom: 15px;
-    line-height: 41px;
-    background: #fff;
-    }
-    .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #66CCCC;
-    color: #fff;
-    border-radius: 10px;
-    cursor: pointer;
-    height: 50px;
-    padding: 0 35px;
-    border: none;
-    max-width: 240px;
-    text-align: center;
-    position: relative;
-    left: 37%;
-    transform: translate(-50%, 0);
-    transition: 0.35s;
-    }
-    .button:hover {
-    background-color: black;
-    }
-    .eror {
-    font-size: 14px;
-    margin-bottom: 30px;
-    font-family: 'Gotham Pro';
-    color: #DC143C;
-    font-weight: 600;
-    text-align: center;
-    position: relative;
-    left: 37%;
-    transform: translate(-50%, 0);
-    margin-top: 15px;
-    }
-    .img {
-    height: 75px;
-    text-align: center;
-    position: relative;
-    left: 19%;
-    margin-top: 60px;
-    transform: translate(-50%, 0);
-    }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Data</title>
+    <script>
+        async function fetchData() {
+            const response = await fetch('/api/data');
+            const data = await response.json();
+            const container = document.getElementById('data-container');
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.textContent = JSON.stringify(item);
+                container.appendChild(div);
+            });
+        }
+
+        window.onload = fetchData;
+    </script>
 </head>
 <body>
-<div class="signup__form ">
-					<div class="modal__title"> Регистрация	</div>
-														<div class="modal__input-wrap">
-									<input id="user_name" placeholder="Фамилия Имя Отчество" required="" name="form_text_512" class="modal__input" type="text" value="">
-								</div>
-														<div class="modal__input-wrap">
-									<input id="user_phone" placeholder="Филиал" required="" name="form_text_513" class="modal__input phone" type="text" value="" maxlength="18">
-								</div>
-														<div class="modal__input-wrap">
-									<input id="data_time" placeholder="Идентификатор ИК" name="form_text_515" class="modal__input" type="text" value="">
-								</div>
-														<div class="modal__input-wrap">
-									<input id="ysl_and_doc" placeholder="Идентификатор ТГ " required="" name="form_text_516" class="modal__input" type="text" value="">
-								</div>
-	                <div class="eror" id="error"></div>
-					<div style="text-align:center">
-						<button id="butt" class="button"> Подтвердить </button>
-					</div>
-				</div>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script>
-	let tg = window.Telegram.WebApp;
-	let but = document.getElementById("butt");
-	tg.expand();
-
-	butt.addEventListener("click", () => {
-	let user_name1 = document.getElementById("user_name").value;
-	let user_phone1 = document.getElementById("user_phone").value;
-	let data_time1 = document.getElementById("data_time").value;
-	let ysl_and_doc1 = document.getElementById("ysl_and_doc").value;
-	
-	let data = {
-	name: user_name1,
-	filial: user_phone1,
-	dcode: data_time1,
-	tgid: ysl_and_doc1
-	}
-	tg.sendData(JSON.stringify(data));
-
-	tg.close();
-});
-</script>
+    <div id="data-container"></div>
 </body>
 </html>

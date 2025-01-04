@@ -106,7 +106,7 @@
                 border-radius: 8px;
             }
 
-            .form-container h2 {
+            . form-container h2 {
                 font-size: 1.25rem;
             }
 
@@ -123,7 +123,7 @@
 <body>
     <div class="form-container">
         <h2>Заявка</h2>
-        <form action="#" method="post">
+        <form id="applicationForm" action="#" method="post">
             <div class="form-group">
                 <label for="department">Отдел</label>
                 <select id="department" name="department" required>
@@ -190,41 +190,31 @@
                 }
             });
 
-            const textarea = document.getElementById('message');
-            const formContainer = document.querySelector('.form-container');
+            document.getElementById('applicationForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                let tg = window.Telegram.WebApp;
 
-            textarea.addEventListener('focus', function() {
-                formContainer.style.paddingBottom = '200px'; // Увеличиваем отступ снизу
-                this.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            });
+                if (tg) {
+                    const departmentId = document.getElementById('department').value;
+                    const reasonText = document.getElementById('reason').options[document.getElementById('reason').selectedIndex].text;
+                    const priorityId = document.getElementById('priority').value;
+                    const messageText = document.getElementById('message').value;
 
-            textarea.addEventListener('blur', function() {
-                formContainer.style.paddingBottom = '80px'; // Возвращаем отступ
+                    // Формируем объект с данными
+                    const data = {
+                        departmentId: departmentId,
+                        reasonText: reasonText,
+                        priorityId: priorityId,
+                        messageText: messageText
+                    };
+
+                    tg.sendData(JSON.stringify(data));
+                    tg.close();
+                } else {
+                    console.error("Telegram Web App API is not available.");
+                }
             });
         });
-        
-        document.getElementById('applicationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let tg = window.Telegram.WebApp;
-            let but = document.getElementById("butt");
-
-    
-            const departmentId = document.getElementById('department').value;
-            const reasonText = document.getElementById('reason').options[document.getElementById('reason').selectedIndex].text;
-            const priorityId = document.getElementById('priority').value;
-            const messageText = document.getElementById('message').value;
-
-    // Формируем объект с данными
-            const data = {
-                departmentId: departmentId,
-                reasonText: reasonText,
-                priorityId: priorityId,
-                messageText: messageText
-            };
-        
-            tg.sendData(JSON.stringify(data));
-	        tg.close();
-});   
     </script>
 </body>
 </html>

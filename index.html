@@ -106,7 +106,7 @@
                 border-radius: 8px;
             }
 
-            .form-container h2 {
+            . form-container h2 {
                 font-size: 1.25rem;
             }
 
@@ -171,10 +171,11 @@
             });
 
             textarea.addEventListener('blur', function() {
+                formContainer.style.paddingBottom = '20px'; // Возвращаем отступ
                 formContainer.style.paddingBottom = '80px'; // Возвращаем отступ
             });
 
-            
+
             const departmentSelect = document.getElementById('department');
             const reasonSelect = document.getElementById('reason');
 

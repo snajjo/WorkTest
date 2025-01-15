@@ -133,6 +133,7 @@
                     <option value="" disabled selected>Выберите отдел</option>
                     <option value="1">IT</option>
                     <option value="2">АХО</option>
+                    <option value="11">Маркетинг</option>
                 </select>
             </div>
             <div class="form-group">
@@ -142,7 +143,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="message">Сообщение</label>
+                <label for="message">Опишите проблему</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
             </div>
             <div class="form-group">
@@ -151,7 +152,6 @@
                     <option value="" disabled selected>Выберите приоритет</option>
                     <option value="5">Низкий</option>
                     <option value="4">Средний</option>
-                    <option value="3">Высокий</option>
                     <option value="2">Критический</option>
                     <option value="1">Аварийный</option>
                 </select>
@@ -181,21 +181,27 @@
 
             const reasons = {
                 1: [
-                    { value: 'technical', text: 'Техническая проблема' },
-                    { value: 'question', text: 'Вопрос' },
-                    { value: 'feedback', text: 'Обратная связь' },
+                    { value: 'technical', text: 'ПК и Оргтехника' },
+                    { value: 'question', text: 'Интернет' },
+                    { value: 'feedback', text: 'Программное обеспечение' },
                     { value: 'other', text: 'Другое' }
                 ],
                 2: [
                     { value: 'problem', text: 'Проблема' },
                     { value: 'question', text: 'Вопрос' },
                     { value: 'other', text: 'Другое' }
+                ],
+                11: [
+                    { value: 'promservices', text: 'Продвижение услуг' },
+                    { value: 'adveractiv', text: 'Рекламная активность' },
+                    { value: 'printproducts', text: 'Печатная продукция' },
+                    { value: 'other', text: 'Другое' }
                 ]
             };
 
             departmentSelect.addEventListener('change', function() {
                 const selectedDepartment = this.value;
-                reasonSelect.innerHTML = '<option value="" disabled selected>Выберите повод</option>'; // Сброс списка поводов
+                reasonSelect.innerHTML = '<option value="" disabled selected>Выберите повод</option>';
 
                 if (selectedDepartment && reasons[selectedDepartment]) {
                     reasons[selectedDepartment].forEach(function(reason) {
